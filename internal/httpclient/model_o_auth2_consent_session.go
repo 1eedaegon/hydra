@@ -19,6 +19,7 @@ import (
 // OAuth2ConsentSession A completed OAuth 2.0 Consent Session.
 type OAuth2ConsentSession struct {
 	ConsentRequest           *OAuth2ConsentRequest          `json:"consent_request,omitempty"`
+	Context                  interface{}                    `json:"context,omitempty"`
 	ExpiresAt                *OAuth2ConsentSessionExpiresAt `json:"expires_at,omitempty"`
 	GrantAccessTokenAudience []string                       `json:"grant_access_token_audience,omitempty"`
 	GrantScope               []string                       `json:"grant_scope,omitempty"`
@@ -77,6 +78,39 @@ func (o *OAuth2ConsentSession) HasConsentRequest() bool {
 // SetConsentRequest gets a reference to the given OAuth2ConsentRequest and assigns it to the ConsentRequest field.
 func (o *OAuth2ConsentSession) SetConsentRequest(v OAuth2ConsentRequest) {
 	o.ConsentRequest = &v
+}
+
+// GetContext returns the Context field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2ConsentSession) GetContext() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Context
+}
+
+// GetContextOk returns a tuple with the Context field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2ConsentSession) GetContextOk() (*interface{}, bool) {
+	if o == nil || o.Context == nil {
+		return nil, false
+	}
+	return &o.Context, true
+}
+
+// HasContext returns a boolean if a field has been set.
+func (o *OAuth2ConsentSession) HasContext() bool {
+	if o != nil && o.Context != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetContext gets a reference to the given interface{} and assigns it to the Context field.
+func (o *OAuth2ConsentSession) SetContext(v interface{}) {
+	o.Context = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
@@ -307,6 +341,9 @@ func (o OAuth2ConsentSession) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ConsentRequest != nil {
 		toSerialize["consent_request"] = o.ConsentRequest
+	}
+	if o.Context != nil {
+		toSerialize["context"] = o.Context
 	}
 	if o.ExpiresAt != nil {
 		toSerialize["expires_at"] = o.ExpiresAt

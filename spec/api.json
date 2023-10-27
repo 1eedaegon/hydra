@@ -150,6 +150,9 @@
       },
       "acceptOAuth2ConsentRequest": {
         "properties": {
+          "context": {
+            "$ref": "#/components/schemas/JSONRawMessage"
+          },
           "grant_access_token_audience": {
             "$ref": "#/components/schemas/StringSliceJSONFormat"
           },
@@ -913,6 +916,9 @@
         "properties": {
           "consent_request": {
             "$ref": "#/components/schemas/oAuth2ConsentRequest"
+          },
+          "context": {
+            "$ref": "#/components/schemas/JSONRawMessage"
           },
           "expires_at": {
             "properties": {
